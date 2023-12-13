@@ -3,6 +3,7 @@
     import Results from './Results.svelte';
     import SimilarResults from './SimilarResults.svelte';
 
+    const BASE_URL = 'http://172.206.100.189:8080';
     let query = '';
     let searchResults = [];
     let similarResults = [];
@@ -14,7 +15,7 @@
         isLoading = true;
         hasError = false;
         try {
-            const response = await fetch(`http://localhost:8080/match`, {
+            const response = await fetch(`${BASE_URL}/match`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ query })
@@ -39,7 +40,7 @@
         hasError = false;
         try {
             selectedTitleId = titleId;
-            const response = await fetch(`http://localhost:8080/similar`, {
+            const response = await fetch(`${BASE_URL}/similar`, {
                 method: 'POST',
                 headers: { 'Content-Type': 'application/json' },
                 body: JSON.stringify({ title_id: titleId, genres: ["Action"], original_query: query })
